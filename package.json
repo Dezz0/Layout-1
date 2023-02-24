@@ -1,0 +1,16 @@
+{
+    "name": "layout_1",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "styles": "node-sass -w ./source -o ./style"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "node-scss": "^7.0.3"
+    }
+}

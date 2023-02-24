@@ -1,0 +1,565 @@
+// обнуление
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+/*-----------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Prata&family=Roboto:wght@400;500;700&display=swap");
+
+@mixin textConfig($ff, $fw, $fs, $lh, $c) {
+    font-family: $ff;
+    font-style: normal;
+    font-weight: $fw;
+    font-size: $fs;
+    line-height: $lh;
+    color: $c;
+}
+
+@mixin positioning() {
+    max-width: 1366px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@mixin line() {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #8b8371;
+}
+
+@mixin mediaLine() {
+    @media screen and (max-width: 1183px) {
+        height: 0;
+    }
+    @media screen and (max-width: 858px) {
+        height: 2px;
+    }
+    @media screen and (max-width: 594px) {
+        height: 0;
+    }
+}
+
+.header {
+    @include positioning();
+    height: 85px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    .header__logo {
+        @include textConfig("Playfair Display", 400, 12px, 20px, #555248);
+        margin: 0 10px;
+        width: 100px;
+    }
+    .header__menu {
+        @include textConfig("Roboto", 400, 14px, 16px, #555248);
+        flex: 0 1 35%;
+        margin: 0 10px;
+        .header__links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .header__link {
+                & > a {
+                    color: #555248;
+                }
+                &:not(:last-child) {
+                    margin-right: 65px;
+                    @media screen and (max-width: 566px) {
+                        margin-right: 45px;
+                    }
+                }
+            }
+        }
+    }
+    .header__btns {
+        margin: 0 10px;
+        width: 100px;
+        display: flex;
+        justify-content: end;
+        vertical-align: middle;
+        .header__item {
+            cursor: pointer;
+            &:not(:last-child) {
+                margin-right: 23px;
+            }
+            &:nth-child(2) {
+                position: relative;
+            }
+            &:nth-child(2)::after {
+                content: "1";
+                position: absolute;
+                color: #1b1a17;
+                background-color: #e6c8b4;
+                border-radius: 50%;
+                width: 13px;
+                height: 13px;
+                text-align: center;
+                @include textConfig("Roboto", 400, 8px, 12px, #1b1a17);
+                left: 15px;
+                top: -5px;
+            }
+        }
+    }
+}
+
+.main {
+    @include positioning();
+    .collection {
+        display: flex;
+        justify-content: center;
+        vertical-align: middle;
+        flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+        max-height: 768px;
+        margin-bottom: 76px;
+        @media screen and (max-width: 858px) {
+            max-height: none;
+        }
+        .collection__container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            height: 100%;
+            @media screen and (max-width: 858px) {
+                align-items: center;
+            }
+            .collection__header {
+                @include textConfig("Playfair Display", 400, 45px, 60px, #1b1a17);
+                margin-bottom: 16px;
+                position: relative;
+                &::before {
+                    @include line();
+                    top: 55%;
+                    left: -65px;
+                    @media screen and (max-width: 566px) {
+                        height: 0;
+                    }
+                }
+            }
+            .colletion__sub-header {
+                @include textConfig("Playfair Display", 400, 30px, 40px, #1b1a17);
+                margin-bottom: 39px;
+            }
+            .colletion__description {
+                @include textConfig("Roboto", 400, 14px, 21px, #1b1a17d1);
+                margin-bottom: 64px;
+            }
+            .collection_btn {
+                @include textConfig("Roboto", 500, 12px, 14px, #ffffff);
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                padding: 26px 38px;
+                background: #444240;
+                width: 205px;
+                height: 64px;
+            }
+        }
+        .collection__watch {
+            width: 100%;
+            flex: 0 1 50%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            @media screen and (max-width: 858px) {
+                flex: 1 1 100%;
+            }
+            & > img {
+                width: 100%;
+                height: 100%;
+                max-width: 502.63px;
+                max-height: 804.25px;
+                position: relative;
+            }
+            & > span {
+                @include textConfig("Prata", 400, 16px, 22px, #1b1a17);
+                position: absolute;
+                @media screen and (max-width: 594px) {
+                    font-size: 14px;
+                }
+            }
+            & > span:nth-child(3) {
+                left: 55px;
+                top: 129px;
+                &::after {
+                    @include line();
+                    @include mediaLine();
+                    left: 90px;
+                    top: 8px;
+                }
+                @media screen and (max-width: 594px) {
+                    left: 20px;
+                }
+            }
+            & > span:last-child {
+                right: 0;
+                bottom: 138px;
+                &::after {
+                    @include line();
+                    @include mediaLine();
+                    right: 150px;
+                    bottom: 10px;
+                }
+            }
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 496px;
+            height: 900px;
+            left: 440px;
+            top: -50px;
+            background: linear-gradient(180deg, rgba(234, 227, 212, 0) 0%, #eae3d4 100%);
+            border-radius: 100% 0 0 100% / 50% 0 0 50%;
+            @media screen and (max-width: 858px) {
+                background: none;
+            }
+        }
+    }
+    .popular-models {
+        .popular-models__header {
+            @include textConfig("Playfair Display", 400, 32px, 43px, #1b1a17);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .popular-models__btn {
+            text-align: end;
+            padding-right: 30px;
+            margin-bottom: 37px;
+            & > a {
+                @include textConfig("Roboto", 500, 16px, 19px, #444240);
+                padding-bottom: 11.5px;
+                border-bottom: 1.25px solid #c4c0b6;
+                text-align: end;
+            }
+        }
+        .popular-models__row {
+            height: 100%;
+            min-height: 470px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            .popular-models__column {
+                width: 370px;
+                padding: 40px 29px;
+                .popular-models__watch-name {
+                    @include textConfig("Playfair Display", 700, 14px, 24px, #1b1a17d1);
+                    letter-spacing: 0.03em;
+                    margin-bottom: 10px;
+                }
+                .popular-models__price {
+                    @include textConfig("Prata", 400, 12px, 16px, #1b1a17d1);
+                }
+                & > img {
+                    filter: drop-shadow(2px 2px 10px rgba(85, 82, 72, 0.23));
+                    box-shadow: 2px 0px 3px 0px rgba(212, 176, 152, 0.7);
+                    border-left: none;
+                    border-radius: 50%;
+                    margin-bottom: 19px;
+                }
+                .popular-models__btn-show-more {
+                    position: relative;
+                    @include textConfig("Playfair Display", 400, 16px, 21px, #1b1a17);
+                    padding-left: 48px;
+                    margin-bottom: 125px;
+                    &::before {
+                        @include line();
+                        width: 30px;
+                        top: 11px;
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+    .slider {
+        min-height: 519px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(to right, #f7f5ef 30%, #fdfdfb 30%);
+        z-index: -2;
+        margin-bottom: 81px;
+        .slider__images {
+            position: relative;
+            margin-right: 70px;
+            @media screen and (max-width: 896px) {
+                margin-right: 0;
+            }
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 0.5px solid #1b1a17;
+            border-left: none;
+            border-bottom: none;
+            transform: rotate(45deg);
+            right: 45%;
+            top: 95%;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 0.5px solid #1b1a17;
+            border-right: none;
+            border-top: none;
+            transform: rotate(45deg);
+            left: 45%;
+            top: 95%;
+            z-index: 1;
+        }
+        .slider__info {
+            max-width: 376px;
+            @media screen and (max-width: 966px) {
+                text-align: center;
+            }
+            .slider__header {
+                @include textConfig("Playfair Display", 400, 32px, 43px, #1b1a17);
+                margin-bottom: 38px;
+            }
+            .slider__description {
+                @include textConfig("Roboto", 400, 16px, 24px, #444240);
+                margin-bottom: 45px;
+                text-align: start;
+            }
+            .slider__btn {
+                @include textConfig("Roboto", 500, 12px, 14px, #ffffff);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding: 26px 38px;
+                background-color: #d4b098;
+                margin-bottom: 60px;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                width: 365px;
+                height: 365px;
+                border: 1px solid #d4b098;
+                top: -150px;
+                right: -155px;
+                z-index: -1;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                width: 744px;
+                height: 744px;
+                border: 1px solid #d4b098;
+                bottom: -245px;
+                right: -520px;
+                z-index: -1;
+            }
+        }
+    }
+    .news {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 90px;
+        padding: 0 10px;
+        .news__social-networks {
+            margin-right: 71px;
+            flex: 0 1 35%;
+            @media screen and (max-width: 1096px) {
+                flex: 1 1 100%;
+                margin-bottom: 20px;
+            }
+            @media screen and (max-width: 648px) {
+                text-align: center;
+                margin-right: 0;
+            }
+            .news__header {
+                @include textConfig("Playfair Display", 400, 32px, 43px, #1b1a17);
+                margin-bottom: 40px;
+            }
+            .news__description {
+                @include textConfig("Roboto", 400, 16px, 27px, #444240);
+                margin-bottom: 120px;
+                & > b {
+                    color: #262421;
+                }
+            }
+            .news__network-items {
+                display: flex;
+                align-items: center;
+                @media screen and (max-width: 648px) {
+                    justify-content: center;
+                }
+                .news__icon {
+                    cursor: pointer;
+                    &:not(:last-child) {
+                        margin-right: 18px;
+                    }
+                }
+            }
+        }
+        .news__photos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 629px;
+            width: 100%;
+            min-height: 377px;
+            height: 100%;
+            & > img {
+                max-width: 377px;
+                width: 100%;
+                height: auto;
+            }
+            .news__left-photos {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-wrap: wrap;
+                @media screen and (max-width: 648px) {
+                    & > img:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                    & > img {
+                        margin-bottom: 10px;
+                    }
+                    flex-direction: row;
+                }
+                & > img {
+                    margin-right: 10px;
+                }
+                & > img:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+.footer {
+    width: 100%;
+    padding-top: 79px;
+    padding-bottom: 67px;
+    background-color: #444240;
+    .footer__container {
+        @include positioning();
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .footer__column {
+            width: 188px;
+            @media screen and(max-width: 563px) {
+                text-align: center;
+            }
+            .footer__headline {
+                @include textConfig("Playfair Display", 700, 14px, 25px, #ffffff);
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                margin-bottom: 32px;
+            }
+            & > ul > .footer__link {
+                margin-bottom: 15px;
+            }
+            & > ul > .footer__link > a {
+                @include textConfig("Roboto", 400, 12px, 14px, rgba(255, 255, 255, 0.75));
+            }
+        }
+    }
+}
